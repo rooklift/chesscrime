@@ -95,7 +95,6 @@ function meta_monte(pos, m, runs, depth) {
 	// Considering all possible responses to our move mv,
 	// return the worst score that the opponent can give us.
 
-	let nice1 = pos.nice_string(m);
 	let one = pos.move(m);
 
 	let moves = one.movegen();
