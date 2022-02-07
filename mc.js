@@ -75,7 +75,7 @@ function search(pos) {
 	let scores = {};
 
 	for (let move of moves) {
-		scores[move] = meta_monte(pos, move, 1000, 6);
+		scores[move] = meta_monte(pos, move, 400, 4);
 	}
 
 	moves.sort((a, b) => {
@@ -117,6 +117,8 @@ function meta_monte(pos, m, runs, depth) {
 			let two = one.move(mv);
 			score += monte_carlo(two, depth - 2);
 		}
+
+		score /= runs_per_reply;		// Important so the score returned above for mates can compete
 
 		if (score > highest) highest = score;
 		if (score < lowest) lowest = score;
