@@ -138,7 +138,7 @@ function monte_carlo(pos, depth) {
 	return val(pos);
 }
 
-function random_game() {
+function game() {
 
 	let pos = startpos();
 
@@ -152,11 +152,16 @@ function random_game() {
 
 		let mv = search(pos);
 
+		if (pos.active === WHITE) {
+			process.stdout.write(pos.next_number_string() + " ");
+		}
 		process.stdout.write(pos.nice_string(mv) + " ");
 
 		pos = pos.move(mv);
 
 	}
+
+	process.stdout.write("\n");
 }
 
 function random_choice(arr) {
@@ -164,5 +169,5 @@ function random_choice(arr) {
 }
 
 module.exports = {
-	search, random_game, val
+	val, search, game
 };
